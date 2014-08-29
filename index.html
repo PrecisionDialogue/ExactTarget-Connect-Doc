@@ -28,10 +28,10 @@
         <hr>
 
         <section id="main_content">
-          <h3><a name="welcome" class="anchor" href="#welcome"><span class="octicon octicon-link"></span></a>Welcome the user documentation for configuring the <a href="http://ecommerce.precisiondialogue.com/services/magento-exacttarget-integration/">ExactTarget Connect</a> extension for Magento.</h3>
+          <h3><a name="welcome" class="anchor" href="#welcome"><span class="octicon octicon-link"></span></a>Welcome the user documentation for configuring the <a href="//ecommerce.precisiondialogue.com/services/magento-exacttarget-integration/">ExactTarget Connect</a> extension for Magento.</h3>
 
 			<p>These pages will detail the steps required for a standard configuration of the ExactTarget Connect extension for Magento. The extension provides the ability to use ExactTarget to deliver transactional emails from Magento, synchronize customer and transactional data to ExactTarget for use in campaigns and enhance the abandon cart notification functionality.  
-			sent via ExactTarget. For a complete reference on customizing the content of the various email templates, including those used by the abandon cart functionality, see the reference <a href="http://precisiondialogue.github.io/Magento-ExactTarget-Email-Customization/" target="_blank">ExactTarget Connect Email Customization</a>.  
+			sent via ExactTarget. For a complete reference on customizing the content of the various email templates, including those used by the abandon cart functionality, see the reference <a href="//precisiondialogue.github.io/Magento-ExactTarget-Email-Customization/" target="_blank">ExactTarget Connect Email Customization</a>.  
 			</p>
 
 			<h3><a name="toc" class="anchor" href="#toc"><span class="octicon octicon-link"></span></a>Table Of Contents</h3>
@@ -53,7 +53,7 @@
 			<h3><a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h3>
 			<p>The ExactTarget Connect by Precision Dialogue extension enables the tight integration of Magento sites and ExactTarget. With the extension customer, product, and order details can be used to build campaigns in ExactTarget as the data is synchronized from your Magento environment. In addition you are able to take advantage of the email tracking capabilities of ExactTarget by fulfilling your Magento transactional emails with ExactTarget. Finally, you are able to increase cart conversions by leveraging the email reminder and tracking capabilities of the extensions Abandon Cart reminder functionality. </p>
 			
-			<p>Because the ExactTarget Connect extension builds on top of Magento transactional emails it is also possible to deeply customize the content of the emails. For full details of how to use the various email templating options available though the extension please see the <a href="http://precisiondialogue.github.io/Magento-ExactTarget-Email-Customization/" target="_blank">ExactTarget Connect Email Customization</a> documentation.</p>
+			<p>Because the ExactTarget Connect extension builds on top of Magento transactional emails it is also possible to deeply customize the content of the emails. For full details of how to use the various email templating options available though the extension please see the <a href="//precisiondialogue.github.io/Magento-ExactTarget-Email-Customization/" target="_blank">ExactTarget Connect Email Customization</a> documentation.</p>
         </section>
 
 		<section id="general-config">
@@ -114,7 +114,7 @@
 			
 			<p>The <strong>Asynchronous</strong> setting determines if the transactional email is sent through ExactTarget as soon as it is triggered or if it is placed on a queue for later sending. If the setting is <em>Yes</em> then the email will be queued in Magento and not sent to ExactTarget until the next execution of the <strong>Send asynchronous emails</strong> cron job.</p>
 
-			<p>The default behaviour of the ExactTarget Connect extension is to use only the Magento templating engine when rendering transactional emails and to send the full text of the email as a single value to ExactTarget. It is possible to further customize the email definition in ExactTarget. For details please see the <a href="http://precisiondialogue.github.io/Magento-ExactTarget-Email-Customization/" target="_blank">ExactTarget Connect Email Customization</a> documentation.</p>
+			<p>The default behaviour of the ExactTarget Connect extension is to use only the Magento templating engine when rendering transactional emails and to send the full text of the email as a single value to ExactTarget. It is possible to further customize the email definition in ExactTarget. For details please see the <a href="//precisiondialogue.github.io/Magento-ExactTarget-Email-Customization/" target="_blank">ExactTarget Connect Email Customization</a> documentation.</p>
 		</section>
 		
 		<section id="profile-settings">
@@ -156,13 +156,36 @@
 
 			<p><a href="images/data-extension-config-general.png" data-lightbox="data-extension-config-general" data-title="Data Extension Mapping General"><img src="images/data-extension-config-general.png" alt="Data Extension Mapping General" /></a></p>
 			
-			<p></p>
+			<p><strong>Name</strong> is the name of the ExactTarget data extension that will hold the Magento data.</p>
+			<p><strong>Description</strong> is the descriptive text of the ExactTarget data extension.</p>
+			<p>The <strong>Related Entity</strong> setting determines the Magento object type that will be synchronized to ExactTarget. Currently you can synchronize Customer, Product, Related Products, Order, Order Address and Order Item data from Magento.</p>
+			<p>The <strong>Scope</strong> setting controls the website/store scope of the data mapping.</p>
+			<p>The <strong>Customer Key</strong> setting is the ExactTarget customer key for the data extension.</p>
+			<p>The <strong>Active</strong> setting controls if the data mapping is enabled or not. Only active mappings will synchronize Magento data to ExactTarget.</p>
+			<p>The <strong>Is Sendable</strong> setting controls if the ExactTarget data extension is a sendable data extension. This option is only valid to be set for Magento objects that have an email address field.</p>
 
 			<p><a href="images/data-extension-config-fields.png" data-lightbox="data-extension-config-fields" data-title="Data Extension Mapping Fields"><img src="images/data-extension-config-fields.png" alt="Data Extension Mapping Fields" /></a></p>
+			
+			<p>The list of fields that are configured to synchronize to the ExactTarget data extension is specified in the Fields tab of the data extension mapping configuration screen. New fields can be added by clicking the <strong>Add Field</strong> button, existing field mappings can be modified by selecting the <strong>Edit</strong> option of the field row and a field mapping can be removed by selecting the <strong>Delete</strong> option of the field row.</p>
+			
+			<p><a href="images/data-extension-config-field-detail.png" data-lightbox="data-extension-config-field-detail" data-title="Data Extension Mapping Field Detail"><img src="images/data-extension-config-field-detail.png" alt="Data Extension Mapping Field Detail" /></a></p>
+			
+			<p>There are a number of specific options that need to be set correctly for the fields to be synchronized to ExactTarget.</p>
+			<p><strong>Name</strong> is the name of the ExactTarget data extension field that will hold the Magento data.</p>
+			<p><strong>Is Primary</strong> indicates if this field is a part of the primary key for the data extension. All fields with an <strong>Is Primary</strong> setting of <em>Yes</em> will be a part of the primary key of the data extension.</p>
+			<p>The <strong>Is Required</strong> setting indicates if the data extension field is required to have a value or if it is optional.</p>
+			<p>The <strong>Is Sendable Field</strong> is an indicator that the selected field is an email or subscriber key and is used in a sendable data extension as the email destination. This setting is only valid to be set to <em>Yes</em> for a sendable data extension.</p>
+			<p>The <strong>Entity Type</strong> setting is the Magento entity type that is mapped to the current ExactTarget data extension field.</p>
+			<p>The <strong>Attribute</strong> setting is the actual Magento entity attribute that is mapped to the current ExactTarget data extension field.</p>
+			<p>The <strong>Default Value</strong> setting allows you to specify the default value for the ExactTarget data extension field.</p>
+			<p>The <strong>Active</strong> setting controls if the selected field is going to be synchronized from Magento to ExactTarget.</p>
+			<p>The <strong>Attribute Type in ExactTarget</strong> setting specifies the ExactTarget data type of the data extension field. The selected type should be compatible with the Magento data type or else there will be synchronization errors that will halt the data synchronization process. For email address fields that are sendable the data type should be <em>EmailAddress.</em>  </p>
 		</section>
 
 		<section id="abandon-cart">
-			<h3><a name="abandon-cart" class="anchor" href="#abandon-cart"><span class="octicon octicon-link"></span></a>AbandonCart Settings</h3>		
+			<h3><a name="abandon-cart" class="anchor" href="#abandon-cart"><span class="octicon octicon-link"></span></a>AbandonCart Settings</h3>
+			<p>The ExactTarget Connect by Precision Dialogue extension enables the fulfilment of abandoned cart transactional emails by ExactTarget when triggered by a custom Magento cron task.  There are a variety of options that can be set to contol the timing and frequency of the emails as well as a way to provide custom incentives to convert abandoned carts into sales.</p>
+			<p>Full details of the configuration options are available in the <a href="//precisiondialogue.github.io/ExactTarget-Connect-Abandon-Cart/" target="_blank">ExactTarget Connect by PrecisionDialogue Abandon Cart Configuration</a> documentation.</p>
 		</section>
 
 		<section id="cron-jobs">
@@ -183,7 +206,7 @@
 
         <footer>
           ExactTarget-Connect-Doc is maintained by <a href="https://github.com/PrecisionDialogue">PrecisionDialogue</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+          This page was generated by <a href="//pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
         </footer>
 		
       </div>
