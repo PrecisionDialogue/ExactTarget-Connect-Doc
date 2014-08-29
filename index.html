@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+	<script src="javascripts/jquery-1.11.0.min.js"></script>
+	<script src="javascripts/lightbox.min.js"></script>
+	<link href="stylesheets/lightbox.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>ExactTarget Connect by PrecisionDialogue Configuration</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>ExactTarget Connect by PrecisionDialogue Configuration</h1>
+          <h2>Details for configuring the ExactTarget Connect by PrecisionDialogue Magento module</h2>
+        </header>
+
+        <hr>
+
+        <section id="main_content">
+          <h3><a name="welcome" class="anchor" href="#welcome"><span class="octicon octicon-link"></span></a>Welcome the user documentation for configuring the <a href="http://ecommerce.precisiondialogue.com/services/magento-exacttarget-integration/">ExactTarget Connect</a> extension for Magento.</h3>
+
+			<p>These pages will detail the steps required for a standard configuration of the ExactTarget Connect extension for Magento. The extension provides the ability to use ExactTarget to deliver transactional emails from Magento, synchronize customer and transactional data to ExactTarget for use in campaigns and enhance the abandon cart notification functionality.  
+			sent via ExactTarget. For a complete reference on customizing the content of the various email templates, including those used by the abandon cart functionality, see the reference <a href="http://precisiondialogue.github.io/Magento-ExactTarget-Email-Customization/" target="_blank">ExactTarget Connect Email Customization</a>.  
+			</p>
+
+			<h3><a name="toc" class="anchor" href="#toc"><span class="octicon octicon-link"></span></a>Table Of Contents</h3>
+			<ol>
+				<li><a href="#overview">Overview</a></li>
+				<li><a href="#general-config">General Configuration</a></li>
+				<li><a href="#email-options">Email Configuration</a></li>
+				<li><a href="#profile-settings">Profile Settings</a></li>
+				<li><a href="#data-extension-settings">Data Extension Settings</a></li>
+				<li><a href="#abandon-cart">Abandon Cart Settings</a></li>
+				<li><a href="#cron-jobs">Cron Jobs</a></li>
+				<li><a href="#reports">Reports</a></li>
+				<li><a href="#status">Status and Troubleshooting</a></li>
+				<li><a href="#final">Final Steps</a></li>
+			</ol>
+        </section>
+
+		<section id="overview">
+			<h3><a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h3>
+			<p>The ExactTarget Connect by Precision Dialogue extension enables the tight integration of Magento sites and ExactTarget. With the extension customer, product, and order details can be used to build campaigns in ExactTarget as the data is synchronized from your Magento environment. In addition you are able to take advantage of the email tracking capabilities of ExactTarget by fulfilling your Magento transactional emails with ExactTarget. Finally, you are able to increase cart conversions by leveraging the email reminder and tracking capabilities of the extensions Abandon Cart reminder functionality. </p>
+			
+			<p>Because the ExactTarget Connect extension builds on top of Magento transactional emails it is also possible to deeply customize the content of the emails. For full details of how to use the various email templating options available though the extension please see the <a href="http://precisiondialogue.github.io/Magento-ExactTarget-Email-Customization/" target="_blank">ExactTarget Connect Email Customization</a> documentation.</p>
+        </section>
+
+		<section id="general-config">
+			<h3><a name="general-config" class="anchor" href="#general-config"><span class="octicon octicon-link"></span></a>General Configuration</h3>
+
+			<p>Configuration starts with the setting of the ExactTarget specific settings in the extension. You access the settings from the <em>ExactTarget -> Configuration -> General</em> screen.</p>
+			
+			<p>Prior to the configuration of the extension you need to have certain business rules turned off for your ExactTarget account and/or business unit. Since the transactional emails are rendered in Magento, ExactTarget is unable to guarantee the availability of the required CAN-SPAM compliant values in emails. You must contact ExactTarget support prior to the configuration of the extension to have the CAN-SPAM rules turned off. The specific validations are <em>physical address</em> and <em>unsubscription link</em>.</p>
+			
+			<p><a href="images/extension-config.png" data-lightbox="extension-config" data-title="General Configuration"><img src="images/extension-config.png" alt="General Configuration" /></a></p>
+			
+			<p>The first option, <strong>Integration Enabled</strong> controls if the ExactTarget integration is enabled for the selected configuration scope. This setting should be the last one set for any given configuration as it is essential that all other settings are properly configured before enabling the integration. By enabling the integration we are turning on the functionality of the extension to potentially synchronize customer information, send transactional emails, synchronize detailed store and order data, and send abandoned cart email notification <p>
+			
+			<p>For the <strong>API Username</strong> setting enter the login name of the ExactTarget account that has API privileges and access to the ExactTarget business unit(s) that will be linked to the Magento instance.</p>
+			
+			<p>For the <strong>API Password</strong> setting enter the password for the login name entered above.</p>
+			
+			<p>The <strong>API URL</strong> setting is used to denote which ExactTarget server instance your account is on. To determine which instance you are on see: <a href="https://help.exacttarget.com/en/documentation/exacttarget/resources/accessing_the_exacttarget_application/" target="_blank">Accessing the ExactTarget Application</a>.</p>
+			
+			<p>The <strong>ExactTarget Account Type</strong> setting should be set to the correct account type of your ExactTarget subscription. The availability of some of the other configuration options depends on the type of account you have. Enterprise 2.0 accounts have the largest number of additional options.</p>
+			
+			<p>The <strong>Use CURL for API Calls</strong> setting determines specific low level ExactTarget API interactions. If it is set to <em>Yes</em> then libcurl will be used for many API calls.</p>
+			
+			<p>The <strong>Member ID</strong> setting is for Enterprise 2.0 accounts. The value is the MID of the ExactTarget business unit that is integrated into the selected configuration scope.</p>
+			
+			<p>The <strong>Subscriber Field Name</strong> setting controls the relationship between sendable data extensions and subscribers. The choice should be set depending on what your email address/subscriber key relationship is in ExactTarget. The two choices are <em>Email Address</em> and <em>Subscriber Key</em>.</p>
+			
+			<p>The <strong>ET Email From Name</strong> and <strong>ET Email From Email Address</strong> settings control the displayed from name and email address of all transactional emails fulfilled through ExactTarget. </p>
+			
+			<p>The <strong>Debug Mode</strong> setting controls the logging level of the extension. When the extension is in debug mode a detailed record of ExactTarget API calls and results plus actions taken by the extension are recorded in log files for analysis during a support incident. Debug mode imposes a significant run time penalty on the system and should only be enabled when actively troubleshooting issues.</p>
+			
+			<p>The <strong>Newsletter Email List ID</strong> setting will only have valid selections after a valid set of ExactTarget credentials are entered in the <strong>API Username</strong>, <strong>API Password</strong> and <strong>API URL</strong> settings. All of the lists for the account will then be displayed and customers who subscribe to the newsletter will be added to the selected list. This functionality allows the composition and fulfilment of newsletter emails in ExactTarget.</p>
+			
+			<p>The <strong>Data extensions limit to send for each cron instance</strong> setting controls the maximum number rows of data to synchronize with ExactTarget when the data extension synchronisation cron job executes. This setting allows for the balance between the rate of change of Magento data and the cron interval. Setting a larger value will better support a system with a high rate of data updates (customer, products, orders).</p>
+			
+			<p>The <strong>Run Initial Setup</strong> button requires setting and saving all other configuration settings prior to running. This will execute a routine that will perform the initial creation of all ExactTarget objects required to support the configuration (emails, data extensions, triggered send interactions, etc.). If correctly structured objects already exist in ExactTarget then the object will not be modified.</p>
+		</section>
+
+		<section id="email-options">
+			<h3><a name="email-options" class="anchor" href="#email-options"><span class="octicon octicon-link"></span></a>Email  Configuration</h3>
+			<p>The ExactTarget Connect extension for Magento improves the deliverability of your transactional emails by allowing you to configure transactional emails to be sent with ExactTarget. In addition you are able to take advantage of the rich set of ExactTarget features to improve your email interactions with your customers including detailed send reporting, open and click tracking, subscription management and the ability to take advantage of the rich set of templating features in ExactTarget. Configuration of transactional email sending is in the <em>ExactTarget -> Configuration -> Email</em> screen.</p>
+
+			<p><a href="images/email-config-list.png" data-lightbox="email-config-list" data-title="Email Configuration"><img src="images/email-config-list.png" alt="Email Configuration" /></a></p>
+
+			<p>In order for a transactional email to be sent with ExactTarget you must first create a configuration in the extension for each transactional email you wish to send with ExactTarget. Transactional emails that are not configured in the extension will be sent using the Magento core email configuration </p>
+			
+			<p><a href="images/email-config-detail.png" data-lightbox="email-config-detail" data-title="Email Mapping"><img src="images/email-config-detail.png" alt="Email Mapping" /></a></p>
+
+			<p>Creating an email configuration entry requires creating a configuration for each transactional email that is to be sent with ExactTarget. The <strong>Email template code</strong> setting is the transactional email template that is going to be sent with ExactTarget.</p>
+			
+			<p>In a multi website and/or store environment the <strong>Scope</strong> setting determines the scope of the emails that will be sent with ExactTarget. If you are working in an environment with different templates for websites/stores you will need an email configuration entry for each scope that will use ExactTarget.</p>
+			
+			<p>The <strong>Customer Key</strong> setting determines the base ExactTarget customer key that will be used for the ExactTarget objects that support the integration (email definition, data extension and triggered send interaction). It is recommended that you use the same customer key value for the same email template values in a multi website/store environment.</p>
+			
+			<p>The <strong>Active</strong> setting determines if the configured transactional email will be sent using ExactTarget. If the value is <em>No</em> then the transactional email will be sent using the Magento core email configuration.</p>
+			
+			<p>The <strong>Custom Email Template</strong> setting allows you to specify which custom email template will be rendered and sent for the selected email and scope. This setting is to support the use of custom templates for unique website/store branding within the Magento template rendering engine.</p>
+			
+			<p>The <strong>Asynchronous</strong> setting determines if the transactional email is sent through ExactTarget as soon as it is triggered or if it is placed on a queue for later sending. If the setting is <em>Yes</em> then the email will be queued in Magento and not sent to ExactTarget until the next execution of the <strong>Send asynchronous emails</strong> cron job.</p>
+
+			<p>The default behaviour of the ExactTarget Connect extension is to use only the Magento templating engine when rendering transactional emails and to send the full text of the email as a single value to ExactTarget. It is possible to further customize the email definition in ExactTarget. For details please see the <a href="http://precisiondialogue.github.io/Magento-ExactTarget-Email-Customization/" target="_blank">ExactTarget Connect Email Customization</a> documentation.</p>
+		</section>
+		
+		<section id="profile-settings">
+			<h3><a name="profile-settings" class="anchor" href="#profile-settings"><span class="octicon octicon-link"></span></a>Profile Settings</h3>
+			
+			<p>The ExactTarget Connect extension provides the ability to update ExactTarget subscriber attributes with Customer and Customer Address attributes. The selection and configuration of which customer attributes are sent to ExactTarget is performed in the <em>ExactTarget -> Configuration -> Profile Field</em> screen.</p>
+			
+			<p><a href="images/profile-config-list.png" data-lightbox="profile-config-list" data-title="Profile Mapping"><img src="images/profile-config-list.png" alt="Profile Mapping" /></a></p>
+			
+			<p>Virtually any customer or customer address attribute can be synchronized to an ExactTarget Subscriber attribute. Having Magento customer attributes as subscriber attributes in ExactTarget allows you to perform personalization of your email messages using customer data from Magento as well as using those attributes to build campaigns. To add a new profile field mapping click the <strong>New Profile Field</strong> button and configure the attribute options.</p>
+			
+			<p><a href="images/profile-config-detail.png" data-lightbox="profile-config-detail" data-title="Profile Detail"><img src="images/profile-config-detail.png" alt="Profile Detail" /></a></p>
+			
+			<p>The <strong>Field Name in ExactTarget</strong> setting is the name of the ExactTarget subscriber attribute that will be created/populated with the customer data.</p>
+			
+			<p>The <strong>Attribute Type in ExactTarget</strong> setting indicates the data type to be used for the ExactTarget attribute.</p>
+			
+			<p>The <strong>Entity Type</strong> selector determines the object type whose attribute is to be mapped to the ExactTarget subscriber attribute.</p>
+			
+			<p>The <strong>Customer Attributes</strong> is the object attribute (Customer or Customer Address) that is to be mapped to the ExactTarget subscriber attribute.</p>
+			
+			<p>The <strong>Scope</strong> setting is the website/store scope used for the entity attributes.</p>
+			
+			<p>The <strong>Active</strong> setting controls if the entity attribute mapping is active or not. Only active profile field data is sent to ExactTarget.</p>
+		</section>
+		
+		<section id="data-extension-settings">
+			<h3><a name="data-extension-settings" class="anchor" href="#data-extension-settings"><span class="octicon octicon-link"></span></a>Data Extension Settings</h3>
+			
+			<p>The ExactTarget Connect extension provides you with the ability to send detailed Magento entity data to ExactTarget data extensions. This data can then be used for additional email personalization, building campaigns, data analysis or building complex custom content using AMPScript. The configuration required to send Magneto object data to ExactTarget data extensions is under <em>ExactTarget -> Configuration -> Data Extension</em>.</p>
+			
+			<p><a href="images/data-extension-config-list.png" data-lightbox="data-extension-config-list" data-title="Data Extension Mapping"><img src="images/data-extension-config-list.png" alt="Data Extension Mapping" /></a></p>
+
+			<p>With data extension mapping the extension will maintain detailed duplicate Magento data in ExactTarget. You can synchronize customer, product and order information to ExactTarget. To create a new mapping click the <strong>New data extension configuration</strong> button.</p>
+			
+			<p><a href="images/data-extension-config-list.png" data-lightbox="data-extension-config-list" data-title="Data Extension Mapping"><img src="images/data-extension-config-list.png" alt="Data Extension Mapping" /></a></p>
+			
+			<p>Configuring a data extension mapping requires configuring both some general information about the mapping as well as details about the specific fields that are to be synchronized.</p>
+
+			<p><a href="images/data-extension-config-general.png" data-lightbox="data-extension-config-general" data-title="Data Extension Mapping General"><img src="images/data-extension-config-general.png" alt="Data Extension Mapping General" /></a></p>
+			
+			<p></p>
+
+			<p><a href="images/data-extension-config-fields.png" data-lightbox="data-extension-config-fields" data-title="Data Extension Mapping Fields"><img src="images/data-extension-config-fields.png" alt="Data Extension Mapping Fields" /></a></p>
+		</section>
+
+		<section id="abandon-cart">
+			<h3><a name="abandon-cart" class="anchor" href="#abandon-cart"><span class="octicon octicon-link"></span></a>AbandonCart Settings</h3>		
+		</section>
+
+		<section id="cron-jobs">
+			<h3><a name="cron-jobs" class="anchor" href="#cron-jobs"><span class="octicon octicon-link"></span></a>Cron Jobs</h3>		
+		</section>
+
+		<section id="reports">
+			<h3><a name="reports" class="anchor" href="#reports"><span class="octicon octicon-link"></span></a>Reports</h3>		
+		</section>
+
+		<section id="status">
+			<h3><a name="status" class="anchor" href="#status"><span class="octicon octicon-link"></span></a>Status and Troubleshooting</h3>		
+		</section>
+
+		<section id="final">
+			<h3><a name="final" class="anchor" href="#final"><span class="octicon octicon-link"></span></a>Final Steps</h3>		
+		</section>
+
+        <footer>
+          ExactTarget-Connect-Doc is maintained by <a href="https://github.com/PrecisionDialogue">PrecisionDialogue</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+		
+      </div>
+    </div>
+  </body>
+</html>
